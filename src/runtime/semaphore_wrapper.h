@@ -12,6 +12,7 @@
 #include <semaphore.h>
 #endif
 
+#include "apple_special_semaphore.h"
 
 namespace dgl {
 namespace runtime {
@@ -42,6 +43,8 @@ class Semaphore {
  private:
 #ifdef _WIN32
   HANDLE sem_;
+#elif __APPLE__
+  fake_sem_t sem_; 
 #else
   sem_t sem_;
 #endif
